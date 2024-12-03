@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Dulceria Web</title>
+        <link rel="icon" href="Imagenes/logo.png"/>
+    </h:head>
+    <h:body>
+
+            <h:form style="background-color:  gold;">
+                <p:growl id="messages"/>
+                <p:menubar style="background-color: forestgreen;">
+                    <p:menuitem>
+                        <h:graphicImage value="Imagenes/uaem.png" style="margin-left: 10px; " width="180px" height="55px"></h:graphicImage>
+                    </p:menuitem>
+                    <p:menuitem value="INICIO" outcome="AcercaNs" icon="ui-icon-home"/>
+                    <p:submenu icon="ui-icon-suitcase" label="Empleado">
+                        <p:menuitem value="Ver Empleados" outcome="VistaListaEmpleado" icon="ui-icon-search"/>
+                    </p:submenu>
+                    <p:submenu icon="ui-icon-cart" label="Productos">
+                        <p:menuitem value="Ver Productos" outcome="VistaListaProducto" icon="ui-icon-search"/>
+                    </p:submenu>
+                    <p:submenu icon="ui-icon-person" label="Cliente">
+                        <p:menuitem value="Ver Clientes" outcome="VistaListaClientes" icon="ui-icon-search"/>
+                    </p:submenu>
+                    <p:submenu icon="ui-icon-script" label="Factura">
+                        <p:menuitem value="Ver Facturas" outcome="VistaListaFactura" icon="ui-icon-search"/>
+                    </p:submenu>
+                    
+                    
+                    <p:menuitem value="Iniciar Sesion" outcome="iniciarSesion" icon=" ui-icon-person"/>
+                    <p:menuitem value="Registrate" outcome="AltaInicio" icon=" ui-icon-pencil"/>
+                    
+
+                </p:menubar>
+
+            </h:form>
+            <h:form>
+                <p:carousel autoPlayInterval="3000" circular="true" numVisible="1" style="background-color:  gold;">
+                    <h:graphicImage style="width: 60%; height: auto;" value="Imagenes/fondo1.png" />
+                    <h:graphicImage style="width: 60%; height: auto;" value="Imagenes/fondo2.png" />
+                    <h:graphicImage style="width: 60%; height: auto;" value="Imagenes/fondo3.png" />
+
+                </p:carousel>
+            </h:form>
+
+        <h:form>
+            <p:dock position="bottom">
+                <p:menuitem value="Inicio" icon="Imagenes/inicio.png" outcome="AcercaNs"/>
+                <p:menuitem value="Clientes" icon="Imagenes/cliente.png" outcome="VistaListaClientes"/>
+                <p:menuitem value="Empleados" icon="Imagenes/empleado.png" outcome="VistaListaEmpleado"/>
+                <p:menuitem value="Productos" icon="Imagenes/producto.png" outcome="VistaListaProducto"/>
+                <p:menuitem value="Facturas" icon="Imagenes/factura.png" outcome="VistaListaFactura"/>
+            </p:dock>
+        </h:form>
+    </h:body>
+</html>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Alta Factura</title>
+        <link rel="icon" href="Imagenes/logo.png"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <style>
+            .Bimage{background-image:url("Imagenes/somouaemez.png");
+                    background-repeat: no-repeat; 
+                    background-size: cover;
+                    background-attachment: scroll}
+            </style>
+        </h:head>
+        <h:body styleClass="Bimage">
+        <h:form id="formInsertar">
+            <center>
+                <p:panel header="Ingresa Datos" style="background-color: transparent; width:500px">
+                    <h:panelGrid columns="2" style="background-color: transparent" >
+                        <p:outputLabel value="RFC del Cliente:"/>
+                        <p:selectOneMenu value="#{facturaBean.factura.rfc}" required="true" requiredMessage="Este campo es obligatorio">
+                            <f:selectItems value="#{clienteBean.clientes}" var="c" itemLabel="#{c.rfc}" itemValue="#{c.rfc}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Codigo del producto:"/>
+                        <p:selectOneMenu value="#{facturaBean.factura.codigo}" required="true" requiredMessage="Este campo es obligatorio">
+                            <f:selectItems value="#{productosBean.productos}" var="p" itemLabel="#{p.nombre}" itemValue="#{p.codigo}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Numero del Empleado:"/>
+                        <p:selectOneMenu value="#{facturaBean.factura.numEmpleado}" required="true" requiredMessage="Este campo es obligatorio">
+                            <f:selectItems value="#{empleadosBean.empleados}" var="e" itemLabel="#{e.numEmpleado}" itemValue="#{e.numEmpleado}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Fecha de la compra:"/>
+                        <p:calendar value="#{facturaBean.factura.fechaCompra}" required="true" requiredMessage="Este campo es obligatorio"/>
+                        <p:outputLabel value="Hora de la compra:"/>
+                        <p:calendar value="#{facturaBean.factura.horaCompra}" pattern="HH:mm" timeOnly="true" required="true" requiredMessage="Este campo es obligatorio"/>
+                        <p:outputLabel value="Pago Total:"/>
+                        <p:inputText value="#{facturaBean.factura.pagoTotal}" required="true" requiredMessage="Este campo es obligatorio"/>
+                    </h:panelGrid>
+                    <p:growl id="growl" life="1000" />
+                    <p:commandButton actionListener="#{facturaBean.insertar()}" 
+                                     value="Agregar" update="growl" action="ListaFactura"/>
+                    <p:button icon="ui-icon-arrowreturn-1-w" value="Volver" outcome="index"/>
+                </p:panel>
+            </center>
+        </h:form>
+    </h:body>
+</html>

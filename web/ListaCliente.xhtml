@@ -1,0 +1,139 @@
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Lista Cliente</title>
+        <link rel="icon" href="Imagenes/logo.png"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <style>
+            .Bimage{background-image:url("Imagenes/fondoTabla.png");
+                    background-repeat: no-repeat; 
+                    background-size: cover;
+                    background-attachment: scroll}
+            </style>
+        </h:head>
+        <h:body styleClass="Bimage">
+        <h:form id="formMostrar">
+            <p:dataTable id="exportar" var="per" value="#{clienteBean.clientes}"
+                         emptyMessage="No hay registros" paginator="true"
+                         rows="10" paginatorPosition="top"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink}
+                         {PreviousPageLink} {PageLinks} {NextPageLink}
+                         {RowsPerPageDropdown}" rowsPerPageTemplate="5">
+                <p:column  style="background-color: darkgoldenrod" 
+                           headerText="RFC" filterBy="#{per.rfc}"
+                           filterStyle="width:80px; " filterMatchMode="contains">
+                    <h:outputText value="#{per.rfc}"/>
+                </p:column>
+                <p:column  style="background-color: darkgoldenrod"
+                           headerText="Nombre" filterBy="#{per.nombre}"
+                           filterStyle="width:80px; " filterMatchMode="contains">
+                    <h:outputText value="#{per.nombre}"/>
+                </p:column>
+                <p:column style="background-color: darkgoldenrod"
+                          headerText="Apellido Paterno" filterBy="#{per.paterno}"
+                          filterStyle="width:80px; " filterMatchMode="contains">
+                    <h:outputText value="#{per.paterno}"/>
+                </p:column>
+                <p:column style="background-color: darkgoldenrod"
+                          headerText="Apellido Materno" filterBy="#{per.materno}"
+                          filterStyle="width:80px; " filterMatchMode="contains">
+                    <h:outputText value="#{per.materno}"/>
+                </p:column>
+                <p:column style="background-color: darkgoldenrod" 
+                          headerText="Direccion" filterBy="#{per.direccion}"
+                          filterStyle="width:80px; " filterMatchMode="contains">
+                    <h:outputText value="#{per.direccion}"/>
+                </p:column>
+                <p:column style="background-color: darkgoldenrod"
+                          headerText="Celular" filterBy="#{per.celular}"
+                          filterStyle="width:80px; " filterMatchMode="contains">
+                    <h:outputText value="#{per.celular}"/>
+                </p:column>
+                <p:column style="background-color: darkgoldenrod"
+                          headerText="Correo" filterBy="#{per.correo}"
+                          filterStyle="width:80px; " filterMatchMode="contains">
+                    <h:outputText value="#{per.correo}"/>
+                </p:column>
+
+                <p:column style="background-color: darkgoldenrod"
+                          headerText="Accion" exportable="false">
+                    <p:commandButton value="Editar" onclick="PF('dlgmodificar').show();"
+                                     update=":formModificar">
+                        <f:setPropertyActionListener target="#{clienteBean.cliente}"
+                                                     value="#{per}"/>
+                    </p:commandButton>
+                </p:column>
+
+                <p:column style="background-color: darkgoldenrod"
+                          headerText="Accion" exportable="false">
+                    <p:commandButton value="Eliminar" onclick="PF('dlgeliminar').show();">
+                        <f:setPropertyActionListener target="#{clienteBean.cliente}"
+                                                     value="#{per}"/>
+                    </p:commandButton>
+                </p:column>  
+            </p:dataTable>
+
+            <br/>
+            <h:commandLink>
+                <h:graphicImage value="Imagenes/pdf.png" width="30px"/>
+                <p:dataExporter type="pdf" target="exportar" fileName="Clientes" pageOnly="true"/>
+            </h:commandLink> 
+
+            <h:commandLink>
+                <h:graphicImage value="Imagenes/xls.png" width="38px"/>
+                <p:dataExporter type="xls" target="exportar" fileName="Clientes" pageOnly="true"/>
+            </h:commandLink> 
+
+        </h:form>
+
+        <p:dialog id="dlg" header="Modificar Cliente" showEffect="explode"
+                  hideEffect="bounce" widgetVar="dlgmodificar" modal="true"
+                  resizable="false" minWidth="200">
+            <h:form id="formModificar">
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="RFC:"/>
+                    <p:inputText value="#{clienteBean.cliente.rfc}" required="true" requiredMessage="Este campo es obligatorio"/>
+                    <p:outputLabel value="Nombre:"/>
+                    <p:inputText value="#{clienteBean.cliente.nombre}" required="true" requiredMessage="Este campo es obligatorio"/>
+                    <p:outputLabel value="Apellido Paterno:"/>
+                    <p:inputText value="#{clienteBean.cliente.paterno}" required="true" requiredMessage="Este campo es obligatorio"/>
+                    <p:outputLabel value="Apellido Materno:"/>
+                    <p:inputText value="#{clienteBean.cliente.materno}" required="true" requiredMessage="Este campo es obligatorio"/>
+                    <p:outputLabel value="Direccion:"/>
+                    <p:inputText value="#{clienteBean.cliente.direccion}" required="true" requiredMessage="Este campo es obligatorio"/>
+                    <p:outputLabel value="Celular:"/>
+                    <p:inputText value="#{clienteBean.cliente.celular}" required="true" requiredMessage="Este campo es obligatorio"/>
+                    <p:outputLabel value="Correo:"/>
+                    <p:inputText value="#{clienteBean.cliente.correo}" required="true" requiredMessage="Este campo es obligatorio"/>
+                </p:panelGrid>
+
+                <p:commandButton actionListener="#{clienteBean.modificar()}"
+                                 value="Modificar Cliente" update=":formMostrar"
+                                 onclick="PF('dlgmodificar').hide();"/>
+
+            </h:form>
+        </p:dialog>
+        <p:dialog id="dlg2" header="Eliminar Cliente" showEffect="explode"
+                  hideEffect="bounce" widgetVar="dlgeliminar" modal="true"
+                  resizable="false" minWidth="200">
+            <h:form id="formEliminar">
+                <p:outputLabel value="¿Desea Eliminar el registro?"/>
+
+                <p:commandButton actionListener="#{clienteBean.eliminar()}"
+                                 value="Si" update=":formMostrar"
+                                 onclick="PF('dlgeliminar').hide();"/>
+                <p:commandButton value="No" onclick="PF('dlg2').hide();"/>
+            </h:form>
+        </p:dialog>
+        <p:button value="Regresar al Inicio" outcome="index"/>
+    </h:body>
+</html>
+

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Alta Empleado</title>
+        <link rel="icon" href="Imagenes/logo.png"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <style>
+            .Bimage{background-image:url("Imagenes/somouaemez.png");
+                    background-repeat: no-repeat; 
+                    background-size: cover;
+                    background-attachment: scroll}
+            </style>
+        </h:head>
+    <h:body styleClass="Bimage">
+            <h:form id="formInsertar">
+            <center>
+                <p:panel header="Ingresa Datos" style="background-color: transparent; width:500px">
+                    <h:panelGrid columns="2" cellpadding="5" >
+                        <p:outputLabel value="Numero empleado:"/>
+                        <p:inputText value="#{empleadosBean.empleado.numEmpleado}" required="true" requiredMessage="Este campo es obligatorio"/>
+                        <p:outputLabel value="Nombre:"/>
+                        <p:inputText value="#{empleadosBean.empleado.nombre}" required="true" requiredMessage="Este campo es obligatorio"/>
+                        <p:outputLabel value="Apellido Paterno:"/>
+                        <p:inputText value="#{empleadosBean.empleado.paterno}" required="true" requiredMessage="Este campo es obligatorio"/>
+                        <p:outputLabel value="Apellido Materno:"/>
+                        <p:inputText value="#{empleadosBean.empleado.materno}" required="true" requiredMessage="Este campo es obligatorio"/>
+                        <p:outputLabel value="Direccion:"/>
+                        <p:inputText value="#{empleadosBean.empleado.direccion}" required="true" requiredMessage="Este campo es obligatorio"/>
+                        <p:outputLabel value="Celular:"/>
+                        <p:inputText value="#{empleadosBean.empleado.celular}" required="true" requiredMessage="Este campo es obligatorio"/>
+                        <p:outputLabel value="Correo:"/>
+                        <p:inputText value="#{empleadosBean.empleado.correo}" required="true" requiredMessage="Este campo es obligatorio"/>
+                        <p:outputLabel for="@next" value="Sexo"/>
+                        <p:selectOneMenu id="sexo" value="#{empleadosBean.empleado.sexo}" effect="fold" editable="true" required="true" requiredMessage="Este campo es obligatorio">
+                            <f:selectItem itemLabel="Masculino" itemValue=""/>
+                            <f:selectItem itemLabel="Femenino" itemValue=""/>
+                        </p:selectOneMenu>
+                        <p:outputLabel for="@next" value="Cargo"/>
+                        <p:selectOneMenu id="cargo" value="#{empleadosBean.empleado.cargo}" effect="fold" editable="true" required="true" requiredMessage="Este campo es obligatorio">
+                            <f:selectItem itemLabel="Gerente" itemValue=""/>
+                            <f:selectItem itemLabel="Vendedor" itemValue=""/>
+                            <f:selectItem itemLabel="Bodegero" itemValue=""/>
+                            <f:selectItem itemLabel="Distribuidor" itemValue=""/>
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+                    <p:growl id="growl" life="3000" />
+                    <p:commandButton actionListener="#{empleadosBean.insertar()}" 
+                                     value="Agregar" update="growl" action="ListaEmpleado" />
+                    <p:button icon="ui-icon-arrowreturn-1-w" value="Volver" outcome="Inicio"/>
+                    
+
+                </p:panel>
+            </center>            
+        </h:form>
+    </h:body>
+</html>

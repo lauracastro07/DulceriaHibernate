@@ -1,0 +1,81 @@
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Lista Empleado</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="icon" href="Imagenes/logo.png"/>
+        <style>
+            .Bimage{background-image:url("Imagenes/fondoTabla.png");
+                    background-repeat: no-repeat; 
+                    background-size: cover;
+                    background-attachment: scroll}
+            </style>
+        </h:head>
+        <h:body styleClass="Bimage">
+        <h:form id="formMostrar">
+            <p:dataTable id="exportar" var="per" value="#{empleadosBean.empleados}"
+                         emptyMessage="No hay registros" paginator="true"
+                         rows="10" paginatorPosition="top"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink}
+                         {PreviousPageLink} {PageLinks} {NextPageLink}
+                         {RowsPerPageDropdown}" rowsPerPageTemplate="5">
+                <p:column style="background-color: darkgoldenrod"
+                          headerText="Numero de Empleados" filterBy="#{per.numEmpleado}"
+                          filterStyle="width:50px; " filterMatchMode="contains">
+                    <h:outputText value="#{per.numEmpleado}"/>
+                </p:column>
+                <p:column style="background-color: goldenrod"
+                          headerText="Nombre" filterBy="#{per.nombre}"
+                          filterStyle="width:80px; " filterMatchMode="contains">
+                    <h:outputText value="#{per.nombre}"/>
+                </p:column>
+                <p:column style="background-color: goldenrod"
+                          headerText="Apellido Paterno" filterBy="#{per.paterno}"
+                          filterStyle="width:80px; " filterMatchMode="contains">
+                    <h:outputText value="#{per.paterno}"/>
+                </p:column>
+                <p:column style="background-color: goldenrod"
+                          headerText="Apellido Materno" filterBy="#{per.materno}"
+                          filterStyle="width:80px; " filterMatchMode="contains">
+                    <h:outputText value="#{per.materno}"/>
+                </p:column>
+                <p:column style="background-color: goldenrod"
+                          headerText="Direccion" filterBy="#{per.direccion}"
+                          filterStyle="width:80px; " filterMatchMode="contains">
+                    <h:outputText value="#{per.direccion}"/>
+                </p:column>
+                <p:column style="background-color: goldenrod"
+                          headerText="Celular" filterBy="#{per.celular}"
+                          filterStyle="width:80px; " filterMatchMode="contains">
+                    <h:outputText value="#{per.celular}"/>
+                </p:column>
+                <p:column style="background-color: goldenrod"
+                          headerText="Correo" filterBy="#{per.correo}"
+                          filterStyle="width:80px; " filterMatchMode="contains">
+                    <h:outputText value="#{per.correo}"/>
+                </p:column>
+                <p:column style="background-color: goldenrod"
+                          headerText="Sexo" filterBy="#{per.sexo}"
+                          filterStyle="width:80px; " filterMatchMode="contains">
+                    <h:outputText value="#{per.sexo}"/>
+                </p:column>
+                <p:column style="background-color: goldenrod"
+                          headerText="Cargo" filterBy="#{per.cargo}"
+                          filterStyle="width:80px; " filterMatchMode="contains">
+                    <h:outputText value="#{per.cargo}"/>
+                </p:column>
+  
+            </p:dataTable>
+        </h:form>
+
+        <p:button value="Regresar al Inicio" outcome="Inicio"/>
+    </h:body>
+</html>

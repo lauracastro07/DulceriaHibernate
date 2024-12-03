@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12-abr-2023 12:55:11 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelo.Cliente" table="cliente" catalog="dulceria" optimistic-lock="version">
+        <id name="rfc" type="string">
+            <column name="rfc" length="20" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="40" />
+        </property>
+        <property name="paterno" type="string">
+            <column name="paterno" length="40" />
+        </property>
+        <property name="materno" type="string">
+            <column name="materno" length="40" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" length="100" />
+        </property>
+        <property name="celular" type="java.lang.Long">
+            <column name="celular" />
+        </property>
+        <property name="correo" type="string">
+            <column name="correo" length="50" />
+        </property>
+        <set name="facturas" table="factura" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="rfc" length="20" />
+            </key>
+            <one-to-many class="Modelo.Factura" />
+        </set>
+    </class>
+</hibernate-mapping>

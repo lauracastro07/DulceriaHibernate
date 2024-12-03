@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Dulceria Web</title>
+        <script name="jquery/jquery.js" library="primefaces"></script>
+        <link rel="icon" href="Imagenes/logo.png"/>
+        <style>
+            .Bimage{background-image:url("Imagenes/somouaemez.png");
+                    background-repeat: no-repeat; 
+                    background-size: cover;
+                    background-attachment: scroll}
+            </style>
+        </h:head>
+        <h:body style="text-align:center" styleClass="Bimage">
+        <p:growl id="mensajes" showDetail="true" life="2000" />
+        <h:form>
+            <center>
+                <p:panel header="Acceder" style="background-color: transparent; width:500px">
+                    <p:messages autoUpdate="true"/>
+                    <h:panelGrid columns="2" cellpadding="5" >
+                        <h:outputLabel for="username" value="Nombre del Empleado" />
+                        <h:inputText  value="#{loginController.empleados.nombre}" required="true" requiredMessage="Usuario o contraseña incorrectos"  id="username" label="username"/>
+                        <h:outputLabel for="password" value="Numero del Empleado"/>
+                        <p:password value="#{loginController.empleados.numEmpleado}" required="true" id="password" label="password"/>
+                        <f:facet name="footer"><p:commandButton action="#{loginController.checkEmpleado()}" value="Iniciar"/></f:facet>
+                    </h:panelGrid>
+                </p:panel>
+                <p:button icon="ui-icon-arrowreturn-1-w" value="Volver" outcome="Inicio"/>
+            </center>
+        </h:form>
+
+    </h:body>
+</html>

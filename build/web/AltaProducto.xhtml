@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Alta Producto</title>
+        <link rel="icon" href="Imagenes/logo.png"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <style>
+            .Bimage{background-image:url("Imagenes/somouaemez.png");
+                    background-repeat: no-repeat; 
+                    background-size: cover;
+                    background-attachment: scroll}
+            </style>
+        </h:head>
+        <h:body styleClass="Bimage">
+        <h:form id="formInsertar">
+            <center>
+                <p:panel header="Ingresa Datos" style="background-color: transparent; width:500px">
+                    <h:panelGrid columns="2" style="background-color: transparent">
+                        <p:outputLabel value="Codigo:"/>
+                        <p:inputText value="#{productosBean.producto.codigo}" required="true" requiredMessage="Este campo es obligatorio"/>
+                        <p:outputLabel value="Nombre:"/>
+                        <p:inputText value="#{productosBean.producto.nombre}" required="true" requiredMessage="Este campo es obligatorio"/>
+                        <p:outputLabel value="Cantidad:"/>
+                        <p:inputText value="#{productosBean.producto.cantidad}" required="true" requiredMessage="Este campo es obligatorio"/>
+                        <p:outputLabel value="Precio:"/>
+                        <p:inputText value="#{productosBean.producto.precio}" required="true" requiredMessage="Este campo es obligatorio"/>
+                        <p:outputLabel value="Fecha Caducidad:"/>
+                        <p:calendar value="#{productosBean.producto.fechaCad}" required="true" requiredMessage="Este campo es obligatorio"/>
+                    </h:panelGrid>
+                    <p:growl id="growl" life="1000" />
+                    <p:commandButton actionListener="#{productosBean.insertar()}" 
+                                     value="Agregar" update="growl" action="ListaProducto"/>
+                    <p:button icon="ui-icon-arrowreturn-1-w" value="Volver" outcome="index"/>
+                </p:panel>
+            </center>
+        </h:form>
+    </h:body>
+</html>

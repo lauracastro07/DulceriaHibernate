@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12-abr-2023 12:55:11 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelo.Factura" table="factura" catalog="dulceria" optimistic-lock="version">
+        <id name="clave" type="java.lang.Integer">
+            <column name="clave" />
+            <generator class="identity" />
+        </id>
+        <!--many-to-one name="cliente" class="Modelo.Cliente" fetch="select">
+            <column name="rfc" length="20" />
+        </many-to-one-->
+        <property name="rfc" type="java.lang.String">
+            <column name="rfc"/>
+        </property>
+        <!--many-to-one name="empleados" class="Modelo.Empleados" fetch="select">
+            <column name="numEmpleado" />
+        </many-to-one-->
+        <property name="numEmpleado" type="java.lang.Integer">
+            <column name="numEmpleado"/>
+        </property>
+        <!--many-to-one name="productos" class="Modelo.Productos" fetch="select">
+            <column name="codigo" />
+        </many-to-one-->
+        <property name="codigo" type="java.lang.Integer">
+            <column name="codigo"/>
+        </property>
+        <property name="fechaCompra" type="date">
+            <column name="fechaCompra" length="10" />
+        </property>
+        <property name="horaCompra" type="time">
+            <column name="horaCompra" length="8" />
+        </property>
+        <property name="pagoTotal" type="java.lang.Double">
+            <column name="pagoTotal" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

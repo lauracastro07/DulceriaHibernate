@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12-abr-2023 12:55:11 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelo.Empleados" table="empleados" catalog="dulceria" optimistic-lock="version">
+        <id name="numEmpleado" type="int">
+            <column name="numEmpleado" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="40" />
+        </property>
+        <property name="paterno" type="string">
+            <column name="paterno" length="40" />
+        </property>
+        <property name="materno" type="string">
+            <column name="materno" length="40" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" length="100" />
+        </property>
+        <property name="celular" type="java.lang.Long">
+            <column name="celular" />
+        </property>
+        <property name="correo" type="string">
+            <column name="correo" length="50" />
+        </property>
+        <property name="sexo" type="string">
+            <column name="sexo" length="15" />
+        </property>
+        <property name="cargo" type="string">
+            <column name="cargo" length="50" />
+        </property>
+        <set name="facturas" table="factura" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="numEmpleado" />
+            </key>
+            <one-to-many class="Modelo.Factura" />
+        </set>
+    </class>
+</hibernate-mapping>
